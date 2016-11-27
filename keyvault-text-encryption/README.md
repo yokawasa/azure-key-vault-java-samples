@@ -11,8 +11,8 @@ To run this sample, you must have the following:
 
 Once you have all prerequisite information, configure app.conf
 ```
-ClientID=<Your Client ID>
-ClientCredential=<Your Client Secret>
+ClientID=<Client ID of your Service Principal>
+ClientCredential=<Client Secret of your Service Principal>
 AzureKeyVaultKeyIdentifier=<URI to a key in an Azure Key Vault>
 ```
 
