@@ -9,7 +9,7 @@ To run this sample, you must have the following:
 * A URI to a secret in an Azure Key Vault
 * A Client ID and a Client Secret for a web application registered with Azure Active Directory that has access to your Key Vault
 
-Once you have all prerequisite infomation, configure app.conf
+Once you have all prerequisite information, configure app.conf
 ```
 ClientID=<Your Client ID>
 ClientCredential=<Your Client Secret>
