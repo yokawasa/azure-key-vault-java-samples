@@ -55,19 +55,19 @@ public class App {
         String clientCred = PropertyLoader.getInstance(conffile).getValue("ClientCredential");
         String keyIdentifier = PropertyLoader.getInstance(conffile).getValue("AzureKeyVaultKeyIdentifier");
 	
-		KeyVaultCredentials kvCred = new CustomKeyVaultCredentials(clientID, clientCred);
-		Configuration config = KeyVaultConfiguration.configure(null, kvCred);
-		KeyVaultClient kvc = KeyVaultClientService.create(config);
+        KeyVaultCredentials kvCred = new CustomKeyVaultCredentials(clientID, clientCred);
+        Configuration config = KeyVaultConfiguration.configure(null, kvCred);
+        KeyVaultClient kvc = KeyVaultClientService.create(config);
 
         // Encryption
-		byte[] byteText = textToEncrypt.getBytes("UTF-16");
-		Future<KeyOperationResult> result = kvc.encryptAsync(keyIdentifier, JsonWebKeyEncryptionAlgorithm.RSAOAEP, byteText); 
-		KeyOperationResult keyoperationResult = result.get();
-		System.out.println("KeyOperationResult: " + keyoperationResult);
-		System.out.println("Encrypted(base64): " + Base64.encodeBase64String(keyoperationResult.getResult()));
+        byte[] byteText = textToEncrypt.getBytes("UTF-16");
+        Future<KeyOperationResult> result = kvc.encryptAsync(keyIdentifier, JsonWebKeyEncryptionAlgorithm.RSAOAEP, byteText); 
+        KeyOperationResult keyoperationResult = result.get();
+        System.out.println("KeyOperationResult: " + keyoperationResult);
+        System.out.println("Encrypted(base64): " + Base64.encodeBase64String(keyoperationResult.getResult()));
         // Decryption
         result = kvc.decryptAsync(keyIdentifier, "RSA-OAEP", keyoperationResult.getResult());
-		String decryptedResult = new String(result.get().getResult(), "UTF-16");
-		System.out.println("Decpryted: " + decryptedResult );
-	}
+        String decryptedResult = new String(result.get().getResult(), "UTF-16");
+        System.out.println("Decpryted: " + decryptedResult );
+    }
 }
